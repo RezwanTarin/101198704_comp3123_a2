@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { Image} from 'react-bootstrap';
 import React , { Component } from 'react';
 import axios from 'axios';
