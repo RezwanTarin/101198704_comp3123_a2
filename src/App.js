@@ -9,22 +9,20 @@ class App extends Component {
     super(props);
     this.state = { 
       name  : null, weather  : null, main  : null,
-      wind  : null, isMounted : false, system  : null,iconhref : null,
+      wind  : null, isMounted : false, system  : null,iconlink : null,
      };
   };
-    
-
   componentDidMount() {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Toronto&appid=ffbf99f93a2893f01da7d1d6a1b6f78d`)
     .then(res => {
         const { name,weather , main , wind , sys } = res.data;
         let ref =  `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`
-        this.setState({ weather : weather[0] , main , wind , sys , name , iconhref : ref, isMounted:true });
+        this.setState({ weather : weather[0] , main , wind , sys , name , iconlink : ref, isMounted:true });
     })
 }
 
   render() {
-    const {  main , wind ,  name , iconhref, isMounted  } = this.state;
+    const {  main , wind ,  name , iconlink, isMounted  } = this.state;
     if(isMounted){
       return (
         <div className='App' >
@@ -33,7 +31,7 @@ class App extends Component {
             <header>
             <h3>Weather App</h3>
             <tr> {name}</tr>
-            <tr ><Image src={iconhref} className='weather-icon'/></tr>
+            <tr ><Image src={iconlink} className='weather-icon'/></tr>
             </header>
             <main>
             <tr>{main.weather}</tr>
